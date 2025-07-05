@@ -40,6 +40,20 @@ public:
     File open(char *filename) override {
         return File();
     }
+
+    uint32_t positionMillis(void) {
+    if (_file_size == 0) return 0;
+//    if (!_useDualPlaybackHead) {
+            return (uint32_t) (( (double)_bufferPosition1 * lengthMillis() ) / (double)(_file_size/2));
+//        } else {
+//            if (_crossfade < 0.5)
+//                return (uint32_t) (( (double)_bufferPosition1 * lengthMillis() ) / (double)(_file_size/2));
+//            else
+//                // this one causes the playhead to be reported at the start or end of the loop, no movement at all
+//                return (uint32_t) (( (double)_bufferPosition2 * lengthMillis() ) / (double)(_file_size/2));
+//        }
+//    }
+    
 protected:
 };
 
