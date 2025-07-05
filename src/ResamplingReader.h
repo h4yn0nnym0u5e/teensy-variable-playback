@@ -646,7 +646,11 @@ public:
     }
 
     void setCrossfadeDurationInSamples(unsigned int crossfadeDurationInSamples) {
-        _crossfadeDurationInSamples = crossfadeDurationInSamples;
+        uint32_t loopLength = _loop_finish - _loop_start;
+        if (crossfadeDurationInSamples > loopLength / 2) {
+            crossfadeDurationInSamples = loopLength / 2;
+        }
+	    _crossfadeDurationInSamples = crossfadeDurationInSamples;
     }
 
     void setInterpolationType(ResampleInterpolationType interpolationType) {
